@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+    - name: Register a value
+      shell: 'echo The test'
+      register: foo
+
+    - name: Print the value
+      debug:
+        msg: "The variable is {{ foo.stdout }}"
+
+    - name: Get the value that we just added
+      shell: 'ls -la && echo'
+      register: bar
+
+    - name: Print the value of the variable
+      debug:
+        msg: "The answer is {{ bar.stdout }}"
